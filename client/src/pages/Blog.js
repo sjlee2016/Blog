@@ -1,44 +1,39 @@
 import React, { Component } from 'react';
-
+import Posts from '../components/Posts/Posts';
+import styles from '../pages/Blog.css'
 class Blog extends Component {
   // Initialize the state
-  
   constructor(props){
     super(props);
     this.state = {
-        posts: [],
-        loading: false
-    }
+      data : null,
+      render: false
+    };
   }
-
-
-
 
   // Fetch the list on first mount
   componentDidMount() {
     this.getPost();
+    this.postHandler();
   }
 
- // Retrieves the list of items from the Express app
+  // Retrieves the list of items from the Express app
   getPost = () => {
     fetch('/blog/page/0')
-    .then(res =>{res.json()})
-    .then(list => this.setState({ list }))
+    .then(response => response.json())
+    .then(data => this.setState({ data: data}))
+  }
+
+  postHandler = () => {
+      this.setState({render:true})
     
-}
-
-    // .then(res => res.json())
-    // .then(json => this.setState({ posts : json["posts"],
-    //     page : json["page"], isEndPage : json["isEndPage"] 
-    //  }))
-
+  } 
 
   render() {
-      const { posts }  = this.state.posts;
-      console.log(this.state);
+  
     return (
-      <div className="App">
-        <h1>List of Items</h1>
+      <div className={styles.Blog}>
+      <Posts data={this.state.data} show={this.state.render}/> 
       </div>
     );
   }

@@ -23,7 +23,7 @@ class List extends Component {
 
   render() {
     const { list } = this.state;
-
+    console.log(list);
     return (
       <div className="App">
         <h1>List of Items</h1>

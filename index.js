@@ -29,14 +29,13 @@ app.get('/api/getList', (req,res) => {
     console.log('Sent list of items');
 });
 
-
-app.get("/blog/page/:page", (req,res) =>
+app.get('/blog/page/:page', (req,res) =>
 {
     var json = {};
     json["posts"] = [];
     json["page"] = [];
     json["isEndPage"] = false;
-      
+    
    var isEndPage = false;
    Post.find({})
    .sort({'posted' : -1 } )
@@ -53,7 +52,6 @@ app.get("/blog/page/:page", (req,res) =>
            json["page"].push(req.params.page);
            json["isEndPage"] = isEndPage;
            res.json(json);
-           
        }
    });
 });
