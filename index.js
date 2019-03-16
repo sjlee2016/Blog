@@ -3,7 +3,7 @@ const path = require('path');
 var request = require("request");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
-
+var mongoDB = require("mongodb");
 var moment = require('moment');
 
 mongoose.connect('mongodb://localhost:27017/blog');
@@ -23,12 +23,27 @@ seedDB = require("./manageDB/seed");
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 // An api endpoint that returns a short list of items
-app.get('/api/getList', (req,res) => {
-    var list = ["item1", "item2", "item2"];
-    res.json(list);
-    console.log('Sent list of items');
-});
 
+app.get('/api/comment/:id', (req,res) => {
+    var json = {}
+    var ObjectId = mongoDB.ObjectID;
+    Comment.find({"_id": ObjectId(req.params.id)}).limit(1).exec(function(err,comment){
+       if(err){
+           res.json({});
+       }
+       console.log(comment[0]);
+       json["comments"]= comment[0];
+       res.json(json);
+    });
+    // //     if(err){
+    // //         res.json(json);
+    // //     }else {
+    // //         json["comment"].push(comment);
+    // //         res.json(json);
+    // //     }
+    // // })
+    // // json["comment"].push()
+})
 app.get('/blog/page/:page', (req,res) =>
 {
     var json = {};
