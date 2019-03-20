@@ -1,0 +1,26 @@
+.TextInput{
+    margin: 4rem 2rem;
+    display: inline;
+}
+.TextInput input{
+
+    text-align: left;
+    padding: 0.4em 0.4em 0.4em 0;
+}
+
+.Large{
+    height: 500px;
+    font-size: 18px;
+    width: 80%;
+}
+.Small{
+   height: 50px;
+   font-size: 25px;
+   width: 300px;
+}
+
+.Medium{
+   height: 100px;
+   font-size: 20px;
+   width: 300px;
+}
