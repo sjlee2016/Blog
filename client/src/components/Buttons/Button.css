@@ -1,0 +1,9 @@
+.Button input{
+    height: 50px;
+    width: 300px;
+    border-radius: 25px;
+    background-color: green;
+    font-size: 20px;
+    font-family: 'Titillium Web', sans-serif;
+    color:white;
+}
